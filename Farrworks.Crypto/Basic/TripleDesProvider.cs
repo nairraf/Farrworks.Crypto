@@ -10,26 +10,27 @@ namespace Farrworks.Crypto.Basic
     {
         private readonly byte[] _keyBytes;
         private TripleDESCryptoServiceProvider _tdesCrypto;
+        private readonly string _salt;
+        private readonly byte[] _saltBytes;
 
         public TripleDesProvider(string key)
         {
-            try 
+            // build a unique yet reproducable set of characters taken from our key to use as a salt
+            for (int i=0; i<key.Length; i++)
             {
-                // try and convert the key from a Base64String.
-                // this should work for any valid key produced via TripleDESCryptoServiceProvider.GenerateKey()
-                // which will produce a 24byte (192bit) symetric key
-                _keyBytes = Convert.FromBase64String(key);
+                if (i%3==0)
+                {
+                    _salt += key[i].ToString();
+                }
             }
-            catch
-            {
-                // fallback to md5 hash - which produces a 16byte hash (128bit symetric key)
-                // this may needed for keys that aren't formated properly.
-                // or fail to be imported properly for some reason.
-                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-                _keyBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(key));
-                md5.Dispose();
-            }
-            
+
+            // get a 64byte hash of our salt, we will use this as the salt byte array to generate the 24byte hash from our key
+            SHA512CryptoServiceProvider sha = new SHA512CryptoServiceProvider();
+            _saltBytes = sha.ComputeHash(Encoding.UTF8.GetBytes(_salt));
+            sha.Dispose();
+
+            // generate our final key, and assign to our 3DES object.
+            _keyBytes = new Rfc2898DeriveBytes(key, _saltBytes, 1000).GetBytes(24);
             _tdesCrypto = new TripleDESCryptoServiceProvider();
             _tdesCrypto.Key = _keyBytes;
             _tdesCrypto.Mode = CipherMode.CBC;
