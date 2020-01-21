@@ -36,7 +36,7 @@ namespace Farrworks.Crypto.Basic
             _tdesCrypto.Mode = CipherMode.CBC;
         }
 
-        public string BasicEncrypt(string data)
+        public string Encrypt(string data)
         {
             byte[] buffer = Encoding.ASCII.GetBytes(data);
             string ret = "";
@@ -73,7 +73,7 @@ namespace Farrworks.Crypto.Basic
             return ret;
         }
 
-        public string BasicDecrypt(string encryptedData)
+        public string Decrypt(string encryptedData)
         {
             //retrieve the IV that is burried within the cipherText
             char[] arrIV = new char[11];

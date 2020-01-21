@@ -23,8 +23,8 @@ namespace Farrworks.Crypto.Tests
 
             // test encryption and decription across tdes objects
             string toEncrypt = "this is a test";
-            string cipherText = tdes1.BasicEncrypt(toEncrypt);
-            string decryptedText = tdes2.BasicDecrypt(cipherText);
+            string cipherText = tdes1.Encrypt(toEncrypt);
+            string decryptedText = tdes2.Decrypt(cipherText);
 
             Assert.That(decryptedText, Is.EqualTo(toEncrypt));
         }
@@ -39,8 +39,8 @@ namespace Farrworks.Crypto.Tests
 
             // test encryption and decription across tdes objects
             string toEncrypt = "this is a test";
-            string cipherText = tdes1.BasicEncrypt(toEncrypt);
-            string decryptedText = tdes2.BasicDecrypt(cipherText);
+            string cipherText = tdes1.Encrypt(toEncrypt);
+            string decryptedText = tdes2.Decrypt(cipherText);
 
             Assert.That(decryptedText, Is.EqualTo(toEncrypt));
         }
@@ -55,8 +55,8 @@ namespace Farrworks.Crypto.Tests
 
             // test encryption and decription across tdes objects
             string toEncrypt = "this is a test";
-            string cipherText = tdes1.BasicEncrypt(toEncrypt);
-            string decryptedText = tdes2.BasicDecrypt(cipherText);
+            string cipherText = tdes1.Encrypt(toEncrypt);
+            string decryptedText = tdes2.Decrypt(cipherText);
 
             Assert.That(decryptedText, Is.EqualTo(toEncrypt));
         }
