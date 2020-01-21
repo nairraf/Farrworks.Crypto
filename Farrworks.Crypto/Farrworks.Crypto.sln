@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Farrworks.Crypto", "Farrworks.Crypto.vbproj", "{C5841803-D87A-4875-822F-F80F024F93EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farrworks.Crypto", "Farrworks.Crypto.csproj", "{0A047C8C-FD02-44F6-AC66-40B73E0818E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farrworks.Crypto.Tests", "..\Farrworks.Crypto.Tests\Farrworks.Crypto.Tests.csproj", "{F3CC4F1D-4624-40D6-A3F4-9F853F96823A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5841803-D87A-4875-822F-F80F024F93EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5841803-D87A-4875-822F-F80F024F93EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5841803-D87A-4875-822F-F80F024F93EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5841803-D87A-4875-822F-F80F024F93EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A047C8C-FD02-44F6-AC66-40B73E0818E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A047C8C-FD02-44F6-AC66-40B73E0818E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A047C8C-FD02-44F6-AC66-40B73E0818E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A047C8C-FD02-44F6-AC66-40B73E0818E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CC4F1D-4624-40D6-A3F4-9F853F96823A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CC4F1D-4624-40D6-A3F4-9F853F96823A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CC4F1D-4624-40D6-A3F4-9F853F96823A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CC4F1D-4624-40D6-A3F4-9F853F96823A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {CE8C9DD0-1267-463A-937A-AC6C67D7DA5B}
+		SolutionGuid = {A7189336-F145-41A2-9796-0F3DE110763E}
 	EndGlobalSection
 EndGlobal
