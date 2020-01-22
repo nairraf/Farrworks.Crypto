@@ -1,7 +1,7 @@
 # Farrworks.Crypto
 Reusable Crypto objects for very basic cryptography needs. 
 
-The objects in this library should not be used to encrypt hihgly sensitive data. Their purpose is to have an easy way to reasonably protect string based data for a variety of purposes.
+The objects in this library should not be used to encrypt highly sensitive data. Their purpose is to have an easy way to reasonably protect text based data for a variety of purposes.
 
 ## Available Namespaces
 
