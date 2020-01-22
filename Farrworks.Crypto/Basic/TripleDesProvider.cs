@@ -13,24 +13,24 @@ namespace Farrworks.Crypto.Basic
         private readonly string _salt;
         private readonly byte[] _saltBytes;
 
-        public TripleDesProvider(string key)
+        public TripleDesProvider(string seed)
         {
-            // build a unique yet reproducable set of characters taken from our key to use as a salt
-            for (int i=0; i<key.Length; i++)
+            // build a unique yet reproducable set of characters taken from our seed to use as a salt
+            for (int i=0; i<seed.Length; i++)
             {
                 if (i%3==0)
                 {
-                    _salt += key[i].ToString();
+                    _salt += seed[i].ToString();
                 }
             }
 
-            // get a 64byte hash of our salt, we will use this as the salt byte array to generate the 24byte hash from our key
+            // get a 64byte hash of our salt, we will use this as the salt byte array to generate the 24byte hash from our seed
             SHA512CryptoServiceProvider sha = new SHA512CryptoServiceProvider();
             _saltBytes = sha.ComputeHash(Encoding.UTF8.GetBytes(_salt));
             sha.Dispose();
 
             // generate our final key, and assign to our 3DES object.
-            _keyBytes = new Rfc2898DeriveBytes(key, _saltBytes, 1000).GetBytes(24);
+            _keyBytes = new Rfc2898DeriveBytes(seed, _saltBytes, 1000).GetBytes(24);
             _tdesCrypto = new TripleDESCryptoServiceProvider();
             _tdesCrypto.Key = _keyBytes;
             _tdesCrypto.Mode = CipherMode.CBC;
