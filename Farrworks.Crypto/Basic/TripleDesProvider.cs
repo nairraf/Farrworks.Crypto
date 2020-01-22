@@ -77,7 +77,7 @@ namespace Farrworks.Crypto.Basic
         {
             //retrieve the IV that is burried within the cipherText
             char[] arrIV = new char[11];
-            char[] arrCT = new char[24];
+            char[] arrCT = new char[encryptedData.Length - 11];
             int pointerIV = 0;
             int pointerCT = 0;
 

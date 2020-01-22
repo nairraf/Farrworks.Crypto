@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Farrworks.Crypto.Basic;
 using System.Security.Cryptography;
 using System.Text;
+using Farrworks.Crypto.Tests.Data;
 
 namespace Farrworks.Crypto.Tests
 {
@@ -10,7 +11,8 @@ namespace Farrworks.Crypto.Tests
     public class Basic_TrippleDesProvider_Should
     {
         [Test]
-        public void EncryptAndDecrypt()
+        [TestCaseSource(typeof(EncryptDecryptTestData), "TestCases")]
+        public void EncryptAndDecrypt(string toEncrypt)
         {
             // generate a new random 192bit symetric key
             TripleDESCryptoServiceProvider csp = new TripleDESCryptoServiceProvider();
@@ -22,7 +24,6 @@ namespace Farrworks.Crypto.Tests
             TripleDesProvider tdes2 = new TripleDesProvider(key);
 
             // test encryption and decription across tdes objects
-            string toEncrypt = "this is a test";
             string cipherText = tdes1.Encrypt(toEncrypt);
             string decryptedText = tdes2.Decrypt(cipherText);
 
@@ -30,7 +31,8 @@ namespace Farrworks.Crypto.Tests
         }
 
         [Test]
-        public void EncryptAndDecryptWithLargeKey()
+        [TestCaseSource(typeof(EncryptDecryptTestData), "TestCases")]
+        public void EncryptAndDecryptWithLargeKey(string toEncrypt)
         {
             string key = @"1q2w3e4r5t6y7u8i9o0p1q2w3e4r5t6y7u8i9o0pqawsedrftgyhujikolp84hnfiusfd872349jsakmnbsdiIUBGFD*^jO)j2kjnDHKJFO9@1ml!\kj872jhbkmnsdg9835489ajikhakjdaf-+=lkjnasfkjb98jkkj2349809sifhd";
             // create our TripleDesProvider objects with our new key
@@ -38,7 +40,6 @@ namespace Farrworks.Crypto.Tests
             TripleDesProvider tdes2 = new TripleDesProvider(key);
 
             // test encryption and decription across tdes objects
-            string toEncrypt = "this is a test";
             string cipherText = tdes1.Encrypt(toEncrypt);
             string decryptedText = tdes2.Decrypt(cipherText);
 
@@ -46,7 +47,8 @@ namespace Farrworks.Crypto.Tests
         }
 
         [Test]
-        public void EncryptAndDecryptWithSmallKey()
+        [TestCaseSource(typeof(EncryptDecryptTestData), "TestCases")]
+        public void EncryptAndDecryptWithSmallKey(string toEncrypt)
         {
             string key = @"a";
             // create our TripleDesProvider objects with our new key
@@ -54,7 +56,6 @@ namespace Farrworks.Crypto.Tests
             TripleDesProvider tdes2 = new TripleDesProvider(key);
 
             // test encryption and decription across tdes objects
-            string toEncrypt = "this is a test";
             string cipherText = tdes1.Encrypt(toEncrypt);
             string decryptedText = tdes2.Decrypt(cipherText);
 
@@ -89,18 +90,13 @@ namespace Farrworks.Crypto.Tests
         }
 
         [Test]
-        public void Rfc2898Test()
+        public void DecryptFromStoredCipherText()
         {
-            
-            
-            string key = "qawsedrftgyhujikolp121x2c345b6nb8n9mn0";
-            string toHash = "hash this!";
+            TripleDesProvider tdes = new TripleDesProvider("123456");
+            string toEncrypt = "thisIsMyPassword";
+            string decrypt = tdes.Decrypt(@"kZzVRyF63d26JwCYGDu5YO+GfYus8vOy6//Cabdxnkv");
 
-            var hash1 = new Rfc2898DeriveBytes(toHash, Encoding.UTF8.GetBytes(key), 1000).GetBytes(24);
-            var hash2 = new Rfc2898DeriveBytes(toHash, Encoding.UTF8.GetBytes(key), 1000).GetBytes(24);
-
-            Assert.That(hash1, Is.EqualTo(hash2));
-
+            Assert.That(decrypt, Is.EqualTo(toEncrypt));
         }
     }
 }
