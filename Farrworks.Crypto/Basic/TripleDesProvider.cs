@@ -38,7 +38,7 @@ namespace Farrworks.Crypto.Basic
 
         public string Encrypt(string data)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(data);
+            byte[] buffer = Encoding.UTF8.GetBytes(data);
             string ret = "";
             try
             {
